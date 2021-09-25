@@ -30,9 +30,8 @@ try:
         tela("A WIFI FOI","DESATIVADA","AGUARDE NOVA","LEITURA DE DADOS")
         time.sleep(5)
         countdown(temp,umid,300)
-except Exception as inst:
-    #tela("OCORREU","UM ERRO","INESPERADO","REINICIANDO...")
-    print(inst)
-    #time.sleep(10)
-    #machine.reset()
+except:
+    tela("OCORREU","UM ERRO","INESPERADO","REINICIANDO...")
+    time.sleep(10)
+    machine.reset()
 
