@@ -5,7 +5,7 @@ d=dht.DHT11(machine.Pin(4))
 d.measure()
 
 def umidnow():
-    return(str(d.humidity()))
+    return d.humidity()
 
 def tempnow():
-    return(str(d.temperature()))
+    return d.temperature()

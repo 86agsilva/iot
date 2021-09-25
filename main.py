@@ -6,7 +6,7 @@ import machine
 import lerdados
 from cronometro import countdown
 from envia import enviadados
-from relay import *
+from relay import relay
 
 msg = tela("LIGANDO O","SISTEMA DE","LEITURA DE","DADOS TEMP/UMID")
 
@@ -30,8 +30,9 @@ try:
         tela("A WIFI FOI","DESATIVADA","AGUARDE NOVA","LEITURA DE DADOS")
         time.sleep(5)
         countdown(temp,umid,300)
-except:
-    tela("OCORREU","UM ERRO","INESPERADO","REINICIANDO...")
-    time.sleep(10)
-    machine.reset()
+except Exception as inst:
+    #tela("OCORREU","UM ERRO","INESPERADO","REINICIANDO...")
+    print(inst)
+    #time.sleep(10)
+    #machine.reset()
 
