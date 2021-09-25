@@ -1,10 +1,11 @@
-from lcd import tela
-from lcdoff import desligatela
+from lcd import *
 import time
 from wifilib import conecta
 import sys
 import machine
-from lertemp import lertemp
+import lerdados
+from cronometro import countdown
+from envia import enviadados
 
 msg = tela("LIGANDO O","SISTEMA DE","LEITURA DE","DADOS TEMP/UMID")
 
@@ -20,10 +21,15 @@ try:
             sys.exit()  
             
         tela("A WIFI ESTA","CONECTADA","","AGUARDE LEITURAS")
-        lertemp()
+        temp = lerdados.tempnow()
+        umid = lerdados.umidnow()
+        enviadados(temp,umid)
         station.disconnect()
+        tela("A WIFI FOI","DESATIVADA","AGUARDE NOVA","LEITURA DE DADOS")
+        time.sleep(5)
+        countdown(temp,umid,300)
 except:
     tela("OCORREU","UM ERRO","INESPERADO","REINICIANDO...")
     time.sleep(10)
     machine.reset()
-    #teste
+
