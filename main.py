@@ -6,6 +6,7 @@ import machine
 import lerdados
 from cronometro import countdown
 from envia import enviadados
+from relay import *
 
 msg = tela("LIGANDO O","SISTEMA DE","LEITURA DE","DADOS TEMP/UMID")
 
@@ -23,7 +24,8 @@ try:
         tela("A WIFI ESTA","CONECTADA","","AGUARDE LEITURAS")
         temp = lerdados.tempnow()
         umid = lerdados.umidnow()
-        enviadados(temp,umid)
+        r = relay(temp, umid)
+        enviadados(temp,umid,r)
         station.disconnect()
         tela("A WIFI FOI","DESATIVADA","AGUARDE NOVA","LEITURA DE DADOS")
         time.sleep(5)
