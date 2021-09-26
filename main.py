@@ -22,16 +22,16 @@ try:
             sys.exit()  
             
         tela("A WIFI ESTA","CONECTADA","","AGUARDE LEITURAS")
-        temp = lerdados.tempnow()
-        umid = lerdados.umidnow()
+        umid, temp = lerdados.leituraja()
         r = relay(temp, umid)
         enviadados(temp,umid,r)
         station.disconnect()
         tela("A WIFI FOI","DESATIVADA","AGUARDE NOVA","LEITURA DE DADOS")
         time.sleep(5)
         countdown(temp,umid,300)
-except:
-    tela("OCORREU","UM ERRO","INESPERADO","REINICIANDO...")
+except Exception as inst:
+    tela2(inst)
+    print(inst)
     time.sleep(10)
     machine.reset()
 
